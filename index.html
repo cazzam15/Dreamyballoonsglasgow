@@ -977,6 +977,33 @@
     color: var(--ink-soft);
     line-height: 1.55;
   }
+  /* Terms */
+  .terms-section { padding: 5rem 3rem; }
+  .terms-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+  .terms-card {
+    background: var(--cream);
+    border: 1px solid var(--lilac-soft);
+    border-radius: 6px;
+    padding: 1.6rem 1.8rem;
+  }
+  .terms-card h5 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .terms-card p {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .terms-card a { color: var(--lilac-deep); }
   /* CTA */
   .cta {
     text-align: center;
@@ -1467,6 +1494,8 @@
     .trust-inner { gap: 2rem 3rem; padding: 0 0.5rem; }
     .footer-bottom { flex-direction: column; align-items: flex-start; }
     .info-strip { padding: 4rem 1.25rem; }
+    .terms-section { padding: 4rem 1.25rem; }
+    .terms-grid { grid-template-columns: 1fr; }
     /* Floating social bar — smaller on tablet */
     .social-float { right: 0.75rem; gap: 0.5rem; }
     .social-float-link { width: 42px; height: 42px; }
@@ -1544,7 +1573,7 @@
     .social-float-link { width: 38px; height: 38px; }
     .social-float-link svg { width: 16px; height: 16px; }
     /* Latest grid - 1 column on phones for nicer scroll */
-    .latest-grid { grid-template-columns: 1fr; gap: 0.7rem; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .latest-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
     .latest-item { aspect-ratio: 4 / 5; }
     /* Follow section */
     .follow-section .script { font-size: 2.4rem; }
@@ -2061,7 +2090,7 @@
         <div class="menu-price">
           <div class="menu-price-row">
             <span class="label">From</span>
-            <span class="amount">£65</span>
+            <span class="amount">£70</span>
           </div>
         </div>
       </div>
@@ -2096,7 +2125,7 @@
         <div class="menu-price">
           <div class="menu-price-row">
             <span class="label">Package</span>
-            <span class="amount">£60</span>
+            <span class="amount">£55</span>
           </div>
         </div>
       </div>
@@ -2153,6 +2182,23 @@
       </div>
     </article>
     <!-- SETUPS -->
+    <article class="menu-item" data-cat="setups">
+      <div class="menu-item-img">
+        <span class="menu-tag">Garland</span>
+        <img loading="lazy" src="images/garland-freestanding.jpg" alt="Free standing balloon garland styled for a salon">
+      </div>
+      <div class="menu-body">
+        <h3>Free Standing Garland</h3>
+        <div class="subtitle">From 5ft &middot; Any Space</div>
+        <p>Freestanding, moveable balloon display for birthdays, celebrations, shops, salons and business displays. Add foils, bows, flowers, cutouts, props or personalisation.</p>
+        <div class="menu-price">
+          <div class="menu-price-row">
+            <span class="label">From</span>
+            <span class="amount">£90</span>
+          </div>
+        </div>
+      </div>
+    </article>
     <article class="menu-item" data-cat="setups">
       <div class="menu-item-img">
         <span class="menu-tag">Party Setup</span>
@@ -2221,7 +2267,7 @@
           </div>
           <div class="menu-price-row">
             <span class="label">With balloons, from</span>
-            <span class="amount small">£200</span>
+            <span class="amount small">£220</span>
           </div>
         </div>
       </div>
@@ -2239,7 +2285,7 @@
         <div class="menu-price">
           <div class="menu-price-row">
             <span class="label">From</span>
-            <span class="amount">£150</span>
+            <span class="amount">£160</span>
           </div>
         </div>
       </div>
@@ -2253,6 +2299,23 @@
         <h3>Ripple Sailboard</h3>
         <div class="subtitle">Textured Backdrop</div>
         <p>Ribbed ripple-textured sailboard with personalisation, garland and add-on cutouts.</p>
+        <div class="menu-price">
+          <div class="menu-price-row">
+            <span class="label">From</span>
+            <span class="amount">£160</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article class="menu-item" data-cat="sailboards">
+      <div class="menu-item-img">
+        <span class="menu-tag">Sailboard</span>
+        <img loading="lazy" src="images/sailboard-square.jpg" alt="White square sailboard backdrop with balloon garland and LED numbers">
+      </div>
+      <div class="menu-body">
+        <h3>White Square Sailboard</h3>
+        <div class="subtitle">Personalised Backdrop</div>
+        <p>Clean square white backdrop personalised to any theme or occasion. Add bows, flowers, foils or cutouts.</p>
         <div class="menu-price">
           <div class="menu-price-row">
             <span class="label">From</span>
@@ -2459,7 +2522,7 @@
   <div class="menu-more">
     <button type="button" class="btn btn-secondary" id="menuMore">See the full menu <span class="count"></span> <span class="arrow">↓</span></button>
   </div>
-    <p class="disclaimer">All prices are starting points and may vary depending on size, customisation and availability. Floating foil balloons and personalised cutouts are priced on request. Once a quote is provided there are no hidden costs, and the final price only changes if additional requests are made. Prop hire is for 24 hours unless agreed otherwise. Have a theme that isn't listed? We love new ideas, please share them with us!</p>
+    <p class="disclaimer">All prices are starting points and may vary depending on size, customisation and availability. Floating foil balloons and personalised cutouts are priced on request. Once a quote is provided there are no hidden costs, and the final price only changes if additional requests are made. Prop hire is for 24 hours unless agreed otherwise. See our full <a href="#terms">T&amp;Cs</a>. Have a theme that isn't listed? We love new ideas, please share them with us!</p>
 </section>
 <!-- PACKAGES -->
 <section id="packages" class="packages-section reveal">
@@ -2472,7 +2535,7 @@
     <div class="package">
       <span class="pkg-tag">Mini</span>
       <h3>Mini Package</h3>
-      <div class="pkg-price">£115<span class="small">All-in</span></div>
+      <div class="pkg-price">£120<span class="small">All-in</span></div>
       <ul class="pkg-includes">
         <li>Easel stand with balloons</li>
         <li>Personalised sign</li>
@@ -2506,7 +2569,7 @@
     <div class="package">
       <span class="pkg-tag">Statement</span>
       <h3>Statement Package</h3>
-      <div class="pkg-price">£320<span class="small">All-in</span></div>
+      <div class="pkg-price">£340<span class="small">All-in</span></div>
       <ul class="pkg-includes">
         <li>Silver/gold sequin wall with garland</li>
         <li>Welcome easel with balloon garland</li>
@@ -2530,7 +2593,7 @@
     <div class="package">
       <span class="pkg-tag">LED · Shimmer</span>
       <h3>Shimmer Package</h3>
-      <div class="pkg-price">£260<span class="small">All-in</span></div>
+      <div class="pkg-price">£290<span class="small">All-in</span></div>
       <ul class="pkg-includes">
         <li>Silver/gold sequin wall with garland</li>
         <li>2 × LED marquee lights</li>
@@ -2615,28 +2678,52 @@
   </div>
   <div class="latest-grid">
     <div class="latest-item">
-      <img loading="lazy" src="images/latest/latest-1.jpg" alt="Recent balloon setup">
-      <div class="latest-caption"><span class="script">Latest setup</span></div>
+      <img loading="lazy" src="images/latest/latest-1.jpg" alt="Engagement sailboard setup">
+      <div class="latest-caption"><span class="script">Engagement party</span></div>
     </div>
     <div class="latest-item">
-      <img loading="lazy" src="images/latest/latest-2.jpg" alt="Recent balloon setup">
-      <div class="latest-caption"><span class="script">Latest setup</span></div>
+      <img loading="lazy" src="images/latest/latest-2.jpg" alt="Sequin wall with LED 50">
+      <div class="latest-caption"><span class="script">Happy 50th</span></div>
     </div>
     <div class="latest-item">
-      <img loading="lazy" src="images/latest/latest-3.jpg" alt="Recent balloon setup">
-      <div class="latest-caption"><span class="script">Latest setup</span></div>
+      <img loading="lazy" src="images/latest/latest-3.jpg" alt="Spider-Man number stack">
+      <div class="latest-caption"><span class="script">Spider-Man 4th</span></div>
     </div>
     <div class="latest-item">
-      <img loading="lazy" src="images/latest/latest-4.jpg" alt="Recent balloon setup">
-      <div class="latest-caption"><span class="script">Latest setup</span></div>
+      <img loading="lazy" src="images/latest/latest-4.jpg" alt="Salon bubble balloons">
+      <div class="latest-caption"><span class="script">Beauty &amp; Noir</span></div>
     </div>
     <div class="latest-item">
-      <img loading="lazy" src="images/latest/latest-5.jpg" alt="Recent balloon setup">
-      <div class="latest-caption"><span class="script">Latest setup</span></div>
+      <img loading="lazy" src="images/latest/latest-5.jpg" alt="Retirement easel display">
+      <div class="latest-caption"><span class="script">Signed, sealed, retired</span></div>
     </div>
     <div class="latest-item">
-      <img loading="lazy" src="images/latest/latest-6.jpg" alt="Recent balloon setup">
-      <div class="latest-caption"><span class="script">Latest setup</span></div>
+      <img loading="lazy" src="images/latest/latest-6.jpg" alt="Green number pair">
+      <div class="latest-caption"><span class="script">Green &amp; gold 30th</span></div>
+    </div>
+    <div class="latest-item">
+      <img loading="lazy" src="images/latest/latest-7.jpg" alt="Garland with LED 60">
+      <div class="latest-caption"><span class="script">Pretty in pink 60th</span></div>
+    </div>
+    <div class="latest-item">
+      <img loading="lazy" src="images/latest/latest-8.jpg" alt="Pastel birthday setup">
+      <div class="latest-caption"><span class="script">Pastel 7th</span></div>
+    </div>
+    <div class="latest-item">
+      <img loading="lazy" src="images/latest/latest-9.jpg" alt="Baby shower easel">
+      <div class="latest-caption"><span class="script">Baby shower</span></div>
+    </div>
+    <div class="latest-item">
+      <img loading="lazy" src="images/latest/latest-10.jpg" alt="Pink number pair">
+      <div class="latest-caption"><span class="script">Hello 13</span></div>
+    </div>
+    <div class="latest-item">
+      <img loading="lazy" src="images/latest/latest-11.jpg" alt="Personalised bubble balloon">
+      <div class="latest-caption"><span class="script">Happy 60th</span></div>
+    </div>
+    <div class="latest-item">
+      <img loading="lazy" src="images/latest/latest-12.jpg" alt="Leopard print garland">
+      <div class="latest-caption"><span class="script">Wild about you</span></div>
     </div>
   </div>
   <div style="text-align: center; margin-top: 3rem;">
@@ -2664,7 +2751,7 @@
     <div class="step">
       <div class="step-num">3</div>
       <h4>Secure</h4>
-      <p>A non-refundable deposit secures your date. Colours, themes and personalisation can be changed up to 7 days before your event, subject to availability.</p>
+      <p>A £30 non-refundable deposit secures event setups, with the balance due by the date on your payment link. We confirm final details the week of your event.</p>
     </div>
     <div class="step">
       <div class="step-num">4</div>
@@ -2717,6 +2804,47 @@
       </svg>
       <h5>Handle With Care</h5>
       <p>Keep away from sharp objects, popcorn ceilings, pets and small children.</p>
+    </div>
+  </div>
+</section>
+<!-- TERMS -->
+<section id="terms" class="terms-section reveal">
+  <div class="section-head">
+    <span class="script">the small print</span>
+    <h2 class="display">Important information &amp; T&amp;Cs</h2>
+  </div>
+  <div class="terms-grid">
+    <div class="terms-card">
+      <h5>A little about us</h5>
+      <p>Dreamy Balloons Glasgow and <a href="luxlights.html">Lux Lights Glasgow</a> are both run by me, with separate social pages to make it easier to browse our balloon and light hire services. These terms apply to both.</p>
+    </div>
+    <div class="terms-card">
+      <h5>Pricing &amp; quotes</h5>
+      <p>All menu prices are starting-from prices and a guide only. Every order is quoted individually on design, size, customisation and availability. Once a quote is accepted there are no hidden costs &mdash; the balance only changes if you request extra items or changes. Menu prices may change with stock or supplier costs.</p>
+    </div>
+    <div class="terms-card">
+      <h5>Order confirmation &amp; payment</h5>
+      <p>Once your booking is confirmed you'll receive a payment link and a full balance due date. Pay any time between booking and that date, whatever suits you best &mdash; we just ask that it's paid by the date given so stock can be bought and your order prepared.</p>
+    </div>
+    <div class="terms-card">
+      <h5>Changes to your order</h5>
+      <p>I'll be in touch the week of your collection or event to confirm final details. Colours, design and personalisation can be changed up to that point where possible, subject to stock. Once details are confirmed and preparation has begun, further changes may not be possible.</p>
+    </div>
+    <div class="terms-card">
+      <h5>Collection, delivery &amp; setups</h5>
+      <p>Collection is preferred for personalised balloons and balloon stacks. Delivery is available for an additional charge. Larger event setups may carry a setup and/or delivery fee, always shown in your quote. Please check your venue allows enough setup time &mdash; some larger installations take 1 hour or more.</p>
+    </div>
+    <div class="terms-card">
+      <h5>Deposits</h5>
+      <p>A £30 non-refundable booking deposit secures your date for event setups and comes off your final balance. Your date is only secured once the deposit is received. Larger bookings or specially ordered items may need a higher deposit, confirmed when booking.</p>
+    </div>
+    <div class="terms-card">
+      <h5>Cancellations</h5>
+      <p>Plans can change. If you need to cancel, please get in touch as soon as possible. Refunds depend on the stage of your order, as stock or personalised items may already have been bought or prepared.</p>
+    </div>
+    <div class="terms-card">
+      <h5>Prop hire</h5>
+      <p>All prop hire is for 24 hours unless agreed otherwise. Customers are responsible for any damage, loss or theft of hired items during the hire period.</p>
     </div>
   </div>
 </section>
@@ -2941,6 +3069,7 @@
         <li><a href="#menu">Sequin Walls</a></li>
         <li><a href="#menu">Sailboards</a></li>
         <li><a href="#menu">LED Lights</a></li>
+        <li><a href="#terms">T&amp;Cs</a></li>
       </ul>
     </div>
     <div>
