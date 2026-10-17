@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#a378b3" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+<title>Price Calculator — Dreamy Balloons</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf6fb;
+    --bg-deep: #f0e6f3;
+    --lilac-soft: #e6d4ec;
+    --lilac: #c9a4d6;
+    --lilac-deep: #a378b3;
+    --plum: #5e3d6e;
+    --ink: #2a1f30;
+    --ink-soft: #5a4862;
+    --cream: #fffaf5;
+    --gold: #c9a86a;
+    --good: #3d7a5a;
+    --bad: #b04a4a;
+    --shadow-soft: 0 12px 36px -12px rgba(94, 61, 110, 0.18);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 24px 16px 60px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 22px; }
+  header .script { font-family: 'Dancing Script', cursive; color: var(--lilac-deep); font-size: 1.6rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 2.1rem; color: var(--plum); line-height: 1.1; }
+  header p { color: var(--ink-soft); font-size: 0.92rem; margin-top: 6px; }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--lilac-soft);
+    border-radius: 18px;
+    padding: 18px 16px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-soft);
+  }
+  .card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.35rem;
+    color: var(--plum);
+    margin-bottom: 4px;
+  }
+  .hint { font-size: 0.82rem; color: var(--ink-soft); margin-bottom: 12px; }
+
+  label { display: block; font-size: 0.78rem; font-weight: 500; color: var(--ink-soft); margin-bottom: 4px; letter-spacing: 0.02em; }
+  input {
+    width: 100%;
+    font: inherit;
+    font-size: 16px; /* stops iPhone zooming in */
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--cream);
+    border: 1px solid var(--lilac-soft);
+    border-radius: 10px;
+    padding: 10px 11px;
+    outline: none;
+  }
+  input:focus { border-color: var(--lilac-deep); box-shadow: 0 0 0 3px rgba(163,120,179,0.18); }
+  .money { position: relative; }
+  .money::before { content: "£"; position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--ink-soft); font-weight: 400; pointer-events: none; }
+  .money input { padding-left: 24px; }
+
+  .row { display: grid; grid-template-columns: 1fr 92px 64px 36px; gap: 8px; align-items: end; margin-bottom: 10px; }
+  .row .line-total { grid-column: 1 / -1; text-align: right; font-size: 0.8rem; color: var(--ink-soft); margin-top: -4px; }
+  .row:not(:first-child) label { display: none; }
+  .del {
+    height: 44px; width: 36px;
+    border: none; background: var(--bg-deep); color: var(--plum);
+    border-radius: 10px; font-size: 1.2rem; cursor: pointer;
+  }
+  .del:hover { background: var(--lilac-soft); }
+  .add {
+    width: 100%; margin-top: 4px;
+    border: 1.5px dashed var(--lilac); background: transparent; color: var(--plum);
+    border-radius: 12px; padding: 11px; font: inherit; font-weight: 500; cursor: pointer;
+  }
+  .add:hover { background: var(--bg-deep); }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid2 + .grid2 { margin-top: 10px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .chip {
+    border: 1px solid var(--lilac); background: #fff; color: var(--plum);
+    border-radius: 999px; padding: 7px 13px; font: inherit; font-size: 0.85rem; font-weight: 500; cursor: pointer;
+  }
+  .chip.on { background: var(--lilac-deep); border-color: var(--lilac-deep); color: #fff; }
+  .toggle { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 0.9rem; color: var(--ink); cursor: pointer; }
+  .toggle input { width: 20px; height: 20px; accent-color: var(--lilac-deep); }
+
+  .result {
+    background: linear-gradient(160deg, var(--plum), #7a5290);
+    color: #fff;
+    border: none;
+  }
+  .result h2 { color: #fff; }
+  .big { text-align: center; padding: 6px 0 14px; }
+  .big .lbl { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.8; }
+  .big .val { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 3.4rem; line-height: 1.05; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stat { background: rgba(255,255,255,0.12); border-radius: 12px; padding: 10px 8px; text-align: center; }
+  .stat .lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }
+  .stat .val { font-size: 1.25rem; font-weight: 500; margin-top: 2px; }
+  .note { font-size: 0.82rem; opacity: 0.85; text-align: center; margin-top: 12px; }
+
+  .check-out { margin-top: 12px; padding: 12px; border-radius: 12px; background: var(--bg-deep); font-size: 0.95rem; line-height: 1.5; }
+  .check-out strong { font-weight: 600; }
+  .pos { color: var(--good); }
+  .neg { color: var(--bad); }
+
+  .reset { display: block; margin: 8px auto 0; background: none; border: none; color: var(--ink-soft); text-decoration: underline; font: inherit; font-size: 0.85rem; cursor: pointer; }
+  footer { text-align: center; font-size: 0.78rem; color: var(--ink-soft); margin-top: 18px; }
+
+  @media (max-width: 420px) {
+    .row { grid-template-columns: 1fr 84px 56px 36px; gap: 6px; }
+    .big .val { font-size: 2.9rem; }
+    .stat .val { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="script">Dreamy Balloons</div>
+    <h1>Price Calculator</h1>
+    <p>Type in what an order costs you — it works out what to charge and what you'll make.</p>
+  </header>
+
+  <section class="card">
+    <h2>1. What it costs you</h2>
+    <p class="hint">Balloons, helium, foils, ribbon, weights, vinyl… cost of each × how many.</p>
+    <div id="items"></div>
+    <button class="add" id="addItem" type="button">+ Add another item</button>
+  </section>
+
+  <section class="card">
+    <h2>2. Extras</h2>
+    <p class="hint">Optional. Leave at 0 if they don't apply.</p>
+    <div class="grid2">
+      <div><label for="hours">Hours of your time</label><input id="hours" type="number" inputmode="decimal" min="0" step="0.25" placeholder="0"></div>
+      <div><label for="rate">Your hourly rate</label><div class="money"><input id="rate" type="number" inputmode="decimal" min="0" step="0.5" placeholder="0"></div></div>
+    </div>
+    <div class="grid2">
+      <div><label for="delivery">Delivery / fuel</label><div class="money"><input id="delivery" type="number" inputmode="decimal" min="0" step="0.5" placeholder="0"></div></div>
+      <div><label for="other">Anything else</label><div class="money"><input id="other" type="number" inputmode="decimal" min="0" step="0.5" placeholder="0"></div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>3. Your markup</h2>
+    <p class="hint">How much to add on top of your costs. 100% = double your costs.</p>
+    <div class="grid2">
+      <div><label for="markup">Markup %</label><input id="markup" type="number" inputmode="decimal" min="0" step="5"></div>
+      <div style="align-self:end;font-size:0.85rem;color:var(--ink-soft);padding-bottom:12px" id="markupExplain"></div>
+    </div>
+    <div class="chips" id="chips"></div>
+    <label class="toggle"><input type="checkbox" id="round"> Round the price up to the nearest £5</label>
+  </section>
+
+  <section class="card result" aria-live="polite">
+    <div class="big">
+      <div class="lbl">Charge the customer</div>
+      <div class="val" id="price">£0.00</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="lbl">Your costs</div><div class="val" id="cost">£0.00</div></div>
+      <div class="stat"><div class="lbl">Profit</div><div class="val" id="profit">£0.00</div></div>
+      <div class="stat"><div class="lbl">Margin</div><div class="val" id="margin">0%</div></div>
+    </div>
+    <div class="note" id="payNote"></div>
+  </section>
+
+  <section class="card">
+    <h2>Check a price</h2>
+    <p class="hint">Already have a price in mind (or a customer asking for a deal)? See what you'd make.</p>
+    <label for="checkPrice">If I charge…</label>
+    <div class="money"><input id="checkPrice" type="number" inputmode="decimal" min="0" step="1" placeholder="e.g. 85"></div>
+    <div class="check-out" id="checkOut" hidden></div>
+  </section>
+
+  <button class="reset" id="reset" type="button">Clear everything</button>
+  <footer>Your numbers are saved on this phone only — nobody else can see them.</footer>
+</div>
+
+<script>
+(function () {
+  const KEY = 'dreamy-calc-v1';
+  const DEFAULTS = {
+    items: [
+      { name: 'Latex balloons', cost: '', qty: '' },
+      { name: 'Helium', cost: '', qty: '1' },
+      { name: 'Ribbon / weights', cost: '', qty: '1' }
+    ],
+    hours: '', rate: '', delivery: '', other: '',
+    markup: '100', round: true, checkPrice: ''
+  };
+  const PRESETS = [50, 100, 150, 200];
+
+  let state;
+  try { state = JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { state = null; }
+  if (!state) state = JSON.parse(JSON.stringify(DEFAULTS));
+
+  const $ = id => document.getElementById(id);
+  const num = v => { const n = parseFloat(v); return isFinite(n) && n > 0 ? n : 0; };
+  const gbp = n => (n < 0 ? '-£' : '£') + Math.abs(n).toFixed(2);
+
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  function renderItems() {
+    const box = $('items');
+    box.innerHTML = '';
+    state.items.forEach((it, i) => {
+      const row = document.createElement('div');
+      row.className = 'row';
+      row.innerHTML =
+        '<div><label>Item</label><input type="text" data-k="name" placeholder="e.g. 12&quot; latex"></div>' +
+        '<div><label>Cost each</label><div class="money"><input type="number" inputmode="decimal" min="0" step="0.01" data-k="cost" placeholder="0"></div></div>' +
+        '<div><label>Qty</label><input type="number" inputmode="decimal" min="0" step="1" data-k="qty" placeholder="0"></div>' +
+        '<button class="del" type="button" aria-label="Remove item">×</button>' +
+        '<div class="line-total"></div>';
+      row.querySelectorAll('input').forEach(inp => {
+        inp.value = it[inp.dataset.k];
+        inp.addEventListener('input', () => { it[inp.dataset.k] = inp.value; calc(); });
+      });
+      row.querySelector('.del').addEventListener('click', () => {
+        state.items.splice(i, 1);
+        if (!state.items.length) state.items.push({ name: '', cost: '', qty: '' });
+        renderItems(); calc();
+      });
+      box.appendChild(row);
+    });
+  }
+
+  function renderChips() {
+    const box = $('chips');
+    box.innerHTML = '';
+    PRESETS.forEach(p => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip' + (num(state.markup) === p ? ' on' : '');
+      b.textContent = p + '%';
+      b.addEventListener('click', () => { state.markup = String(p); $('markup').value = p; calc(); });
+      box.appendChild(b);
+    });
+  }
+
+  function calc() {
+    let materials = 0;
+    const rows = $('items').children;
+    state.items.forEach((it, i) => {
+      const line = num(it.cost) * num(it.qty);
+      materials += line;
+      const lt = rows[i] && rows[i].querySelector('.line-total');
+      if (lt) lt.textContent = line ? '= ' + gbp(line) : '';
+    });
+    const labour = num(state.hours) * num(state.rate);
+    const cost = materials + labour + num(state.delivery) + num(state.other);
+    const markup = num(state.markup);
+
+    let price = cost * (1 + markup / 100);
+    if (state.round && price > 0) price = Math.ceil(price / 5) * 5;
+    const profit = price - cost;
+    const margin = price > 0 ? (profit / price) * 100 : 0;
+
+    $('price').textContent = gbp(price);
+    $('cost').textContent = gbp(cost);
+    $('profit').textContent = gbp(profit);
+    $('margin').textContent = Math.round(margin) + '%';
+    $('markupExplain').textContent = markup
+      ? 'Price = costs × ' + (1 + markup / 100).toFixed(2).replace(/\.?0+$/, '')
+      : 'Selling at cost';
+    $('payNote').textContent = labour
+      ? 'Your ' + num(state.hours) + ' hrs (' + gbp(labour) + ') is already counted as a cost — the profit is on top of that.'
+      : '';
+
+    const cp = num(state.checkPrice);
+    const out = $('checkOut');
+    if (cp && cost) {
+      const p = cp - cost;
+      const m = (p / cp) * 100;
+      out.hidden = false;
+      out.innerHTML = p >= 0
+        ? 'At <strong>' + gbp(cp) + '</strong> you make <strong class="pos">' + gbp(p) + '</strong> profit (' + Math.round(m) + '% margin).'
+        : 'At <strong>' + gbp(cp) + '</strong> you <strong class="neg">lose ' + gbp(-p) + '</strong> — that\'s less than it costs you.';
+      if (p >= 0 && price && cp < price) out.innerHTML += '<br><span style="color:var(--ink-soft);font-size:0.85rem">That\'s ' + gbp(price - cp) + ' less than the suggested price.</span>';
+    } else {
+      out.hidden = true;
+    }
+
+    renderChips();
+    save();
+  }
+
+  const FIELDS = ['hours', 'rate', 'delivery', 'other', 'markup', 'checkPrice'];
+  FIELDS.forEach(k => $(k).addEventListener('input', () => { state[k] = $(k).value; calc(); }));
+  $('round').addEventListener('change', () => { state.round = $('round').checked; calc(); });
+
+  function init() {
+    renderItems();
+    FIELDS.forEach(k => { $(k).value = state[k]; });
+    $('round').checked = !!state.round;
+    calc();
+  }
+
+  $('addItem').addEventListener('click', () => {
+    state.items.push({ name: '', cost: '', qty: '' });
+    renderItems(); calc();
+    const inputs = $('items').querySelectorAll('input[data-k="name"]');
+    inputs[inputs.length - 1].focus();
+  });
+
+  $('reset').addEventListener('click', () => {
+    // keep her usual rate + markup, wipe the order
+    const keep = { rate: state.rate, markup: state.markup, round: state.round };
+    state = Object.assign(JSON.parse(JSON.stringify(DEFAULTS)), keep);
+    init();
+  });
+
+  init();
+})();
+</script>
+</body>
+</html>
